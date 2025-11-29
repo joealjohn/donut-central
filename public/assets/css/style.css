@@ -7391,12 +7391,86 @@ p {
 }
 
 [data-theme="light"] .floating-item {
-    opacity: 1;
-    filter: drop-shadow(0 0 20px rgba(37, 99, 235, 0.4)) drop-shadow(0 0 40px rgba(59, 130, 246, 0.3));
+    opacity: 0.85;
+    filter: drop-shadow(0 0 20px rgba(37, 99, 235, 0.5)) drop-shadow(0 0 40px rgba(59, 130, 246, 0.4));
 }
 
 [data-theme="light"] .floating-item.glow {
-    filter: drop-shadow(0 0 25px rgba(37, 99, 235, 0.5)) drop-shadow(0 0 50px rgba(59, 130, 246, 0.4));
+    filter: drop-shadow(0 0 25px rgba(37, 99, 235, 0.6)) drop-shadow(0 0 50px rgba(59, 130, 246, 0.5));
+}
+
+/* Auction Cards Light Mode */
+[data-theme="light"] .auction-card {
+    background: #ffffff;
+    border: 1px solid #bfdbfe;
+    box-shadow: 0 4px 15px rgba(37, 99, 235, 0.08);
+}
+
+[data-theme="light"] .auction-card:hover {
+    border-color: #93c5fd;
+    box-shadow: 0 8px 30px rgba(37, 99, 235, 0.15);
+}
+
+[data-theme="light"] .auction-card-title .item-name {
+    color: #1e3a5f;
+}
+
+[data-theme="light"] .stat-box {
+    background: linear-gradient(135deg, #1e40af 0%, #2563eb 100%);
+}
+
+[data-theme="light"] .stat-box .stat-value {
+    color: #ffffff;
+}
+
+[data-theme="light"] .stat-box .stat-label {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+[data-theme="light"] .auction-card-footer {
+    border-top-color: #bfdbfe;
+}
+
+[data-theme="light"] .auction-card-footer button,
+[data-theme="light"] .auction-card-footer a {
+    color: #1e40af;
+}
+
+[data-theme="light"] .auction-card-footer button:hover,
+[data-theme="light"] .auction-card-footer a:hover {
+    color: #2563eb;
+}
+
+[data-theme="light"] .seller-info span {
+    color: #1e3a5f;
+}
+
+[data-theme="light"] .auction-badge {
+    background: rgba(37, 99, 235, 0.1);
+    border-color: rgba(37, 99, 235, 0.2);
+    color: #1e40af;
+}
+
+/* Footer Light Mode Fix */
+[data-theme="light"] .footer {
+    background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 100%);
+    color: #e2e8f0;
+}
+
+[data-theme="light"] .footer a {
+    color: #93c5fd;
+}
+
+[data-theme="light"] .footer a:hover {
+    color: #60a5fa;
+}
+
+[data-theme="light"] .footer-title {
+    color: #ffffff;
+}
+
+[data-theme="light"] .footer-bottom {
+    border-top-color: rgba(255, 255, 255, 0.1);
 }
 
 /* ============================================
