@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Track DonutSMP item prices, analyze market trends, and make informed trading decisions.">
+    <meta name="keywords" content="DonutSMP, item prices, market, trading, Minecraft economy">
+    <meta name="theme-color" content="#2E8AFF">
+    
+    <title>Prices - Donut Tracker</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/images/logo.png">
+    
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="assets/css/style.css?v=39">
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body data-page="prices">
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="assets/images/logo.png" alt="Donut Tracker Logo">
+                <span class="logo-text">Donut <span>Tracker</span></span>
+            </a>
+            
+            <form class="header-search" action="stats.html" method="get">
+                <input type="text" name="user" placeholder="Search player..." aria-label="Search for a player">
+                <button type="submit" aria-label="Search"><i class="bi bi-search"></i></button>
+            </form>
+            
+            <nav class="nav">
+                <a href="index.html" class="nav-link">Home</a>
+                <div class="nav-dropdown">
+                    <button class="nav-link nav-dropdown-toggle">
+                        Stats <i class="bi bi-chevron-down"></i>
+                    </button>
+                    <div class="nav-dropdown-menu">
+                        <a href="stats.html" class="nav-dropdown-item">
+                            <i class="bi bi-person-badge"></i>
+                            <div>
+                                <span>Player Stats</span>
+                                <small>Look up individual player statistics</small>
+                            </div>
+                        </a>
+                        <a href="server-stats.html" class="nav-dropdown-item">
+                            <i class="bi bi-server"></i>
+                            <div>
+                                <span>Server Stats</span>
+                                <small>Economy &amp; server statistics</small>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <a href="leaderboards.html" class="nav-link">Leaderboards</a>
+                <a href="prices.html" class="nav-link active">Prices</a>
+                <a href="auction.html" class="nav-link">Auction</a>
+                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+                    <i class="bi bi-sun-fill"></i>
+                </button>
+            </nav>
+            
+            <button class="mobile-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <section class="section">
+            <div class="container">
+                <!-- Page Header -->
+                <div class="page-header">
+                    <div class="live-badge">
+                        <span class="live-dot"></span> Live Prices
+                    </div>
+                    <h1 class="page-title">Item Prices</h1>
+                    <p class="page-subtitle">Current market prices based on auction house data</p>
+                </div>
+
+                <!-- Market Stats -->
+                <div class="prices-stats-grid">
+                    <div class="prices-stat-card">
+                        <i class="bi bi-box-seam"></i>
+                        <div class="prices-stat-content">
+                            <span class="prices-stat-value" id="total-items">--</span>
+                            <span class="prices-stat-label">Unique Items</span>
+                        </div>
+                    </div>
+                    <div class="prices-stat-card">
+                        <i class="bi bi-tags"></i>
+                        <div class="prices-stat-content">
+                            <span class="prices-stat-value" id="total-listings">--</span>
+                            <span class="prices-stat-label">Total Listings</span>
+                        </div>
+                    </div>
+                    <div class="prices-stat-card">
+                        <i class="bi bi-clock-history"></i>
+                        <div class="prices-stat-content">
+                            <span class="prices-stat-value" id="price-last-updated">Just now</span>
+                            <span class="prices-stat-label">Last Updated</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Search and Filter -->
+                <div class="prices-controls">
+                    <div class="prices-search">
+                        <i class="bi bi-search"></i>
+                        <input type="text" id="price-search-input" placeholder="Search items..." aria-label="Search items">
+                    </div>
+                    <div class="prices-sort">
+                        <select id="price-sort-select" aria-label="Sort by">
+                            <option value="name">Sort by Name</option>
+                            <option value="avg_high">Price: High to Low</option>
+                            <option value="avg_low">Price: Low to High</option>
+                            <option value="listings">Most Listings</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Items Container -->
+                <div id="prices-container">
+                    <div class="inline-loader">
+                        <div class="inline-loader-spinner"></div>
+                        <span>Loading prices...</span>
+                    </div>
+                </div>
+
+                <!-- Pagination -->
+                <div id="prices-pagination" class="prices-pagination"></div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- Price Chart Modal -->
+    <div id="price-chart-modal" class="price-modal">
+        <div class="price-modal-content">
+            <div class="price-modal-header">
+                <div class="price-modal-title">
+                    <div class="price-modal-icon" id="modal-item-icon"></div>
+                    <div>
+                        <h2 id="modal-item-name">Item Name</h2>
+                        <span id="modal-item-id">minecraft:item</span>
+                    </div>
+                </div>
+                <button class="price-modal-close" onclick="closePriceModal()">
+                    <i class="bi bi-x-lg"></i>
+                </button>
+            </div>
+            <div class="price-modal-body">
+                <div class="price-modal-stats">
+                    <div class="modal-stat">
+                        <span class="modal-stat-label">Average Price</span>
+                        <span class="modal-stat-value" id="modal-avg-price">$0</span>
+                    </div>
+                    <div class="modal-stat">
+                        <span class="modal-stat-label">Median Price</span>
+                        <span class="modal-stat-value" id="modal-median-price">$0</span>
+                    </div>
+                    <div class="modal-stat">
+                        <span class="modal-stat-label">Min Price</span>
+                        <span class="modal-stat-value" id="modal-min-price">$0</span>
+                    </div>
+                    <div class="modal-stat">
+                        <span class="modal-stat-label">Max Price</span>
+                        <span class="modal-stat-value" id="modal-max-price">$0</span>
+                    </div>
+                </div>
+                <div class="price-chart-container">
+                    <h3><i class="bi bi-graph-up"></i> Price Distribution</h3>
+                    <canvas id="price-chart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo">
+                        <img src="assets/images/logo.png" alt="Donut Tracker Logo">
+                        <span class="logo-text">Donut <span>Tracker</span></span>
+                    </a>
+                    <p class="mt-2">Track DonutSMP player statistics, explore community leaderboards, and discover fellow players.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-title">Quick Links</h4>
+                    <div class="footer-links">
+                        <a href="stats.html">Player Statistics</a>
+                        <a href="leaderboards.html">Leaderboards</a>
+                        <a href="auction.html">Auction House</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-title">Resources</h4>
+                    <div class="footer-links">
+                        <a href="https://donutsmp.net" target="_blank">DonutSMP Website</a>
+                        <a href="https://discord.gg/donutsmp" target="_blank">Discord Server</a>
+                        <a href="https://store.donutsmp.net" target="_blank">Store</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-title">Get in Touch</h4>
+                    <div class="footer-links">
+                        <a href="mailto:support@donutstats.net">support@donutstats.net</a>
+                        <a href="https://discord.gg/donutsmp" target="_blank" rel="noopener">Join Discord</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>© 2025 Donut Tracker • Community stats platform</p>
+                <div class="footer-status">
+                    <span class="status-dot"></span>
+                    <span>Live server status</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="assets/js/app.js?v=47"></script>
+</body>
+</html>
+

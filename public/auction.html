@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Browse DonutSMP auction house listings with advanced filters, search, and sorting options. Find the best deals on items.">
+    <meta name="keywords" content="DonutSMP, auction house, marketplace, trading, Minecraft items">
+    <meta name="theme-color" content="#2E8AFF">
+    
+    <title>Auction House - Donut Tracker</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/images/logo.png">
+    
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="assets/css/style.css?v=39">
+</head>
+<body data-page="auction">
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="assets/images/logo.png" alt="Donut Tracker Logo">
+                <span class="logo-text">Donut <span>Tracker</span></span>
+            </a>
+            
+            <form class="header-search" action="stats.html" method="get">
+                <input type="text" name="user" placeholder="Search player..." aria-label="Search for a player">
+                <button type="submit" aria-label="Search"><i class="bi bi-search"></i></button>
+            </form>
+            
+            <nav class="nav">
+                <a href="index.html" class="nav-link">Home</a>
+                <div class="nav-dropdown">
+                    <button class="nav-link nav-dropdown-toggle">
+                        Stats <i class="bi bi-chevron-down"></i>
+                    </button>
+                    <div class="nav-dropdown-menu">
+                        <a href="stats.html" class="nav-dropdown-item">
+                            <i class="bi bi-person-badge"></i>
+                            <div>
+                                <span>Player Stats</span>
+                                <small>Look up individual player statistics</small>
+                            </div>
+                        </a>
+                        <a href="server-stats.html" class="nav-dropdown-item">
+                            <i class="bi bi-server"></i>
+                            <div>
+                                <span>Server Stats</span>
+                                <small>Economy &amp; server statistics</small>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <a href="leaderboards.html" class="nav-link">Leaderboards</a>
+                <a href="prices.html" class="nav-link">Prices</a>
+                <a href="auction.html" class="nav-link active">Auction</a>
+                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+                    <i class="bi bi-sun-fill"></i>
+                </button>
+            </nav>
+            
+            <button class="mobile-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <section class="section">
+            <div class="container">
+                <!-- Page Header -->
+                <div class="section-header">
+                    <h1>Auction House</h1>
+                    <p>Browse and search live auction house listings with advanced filters, pagination, and real-time updates.</p>
+                </div>
+                
+                <!-- Auction Controls -->
+                <div class="auction-controls">
+                    <div class="auction-controls-left">
+                        <div class="auction-search">
+                            <input type="text" id="auction-search" placeholder="Search for items (e.g., diamond, netherite)..." aria-label="Search auction items">
+                        </div>
+                        
+                        <div class="auction-sort">
+                            <select id="auction-sort" aria-label="Sort auction items">
+                                <option value="">Sort by...</option>
+                                <option value="lowest_price">Lowest Price</option>
+                                <option value="highest_price">Highest Price</option>
+                                <option value="recently_listed">Recently Listed</option>
+                                <option value="last_listed">Ending Soon</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="auction-controls-right">
+                        <button id="auto-refresh-toggle" class="auto-refresh-toggle" aria-label="Toggle auto-refresh">
+                            <i class="bi bi-arrow-repeat"></i> Auto-Refresh: Off
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Auction Container -->
+                <div id="auction-container" aria-live="polite">
+                    <!-- Auction items will be loaded here by JavaScript -->
+                    <div class="inline-loader">
+                        <div class="inline-loader-spinner"></div>
+                        <span>Loading auction listings...</span>
+                    </div>
+                </div>
+                
+                <!-- Pagination Container -->
+                <div id="pagination-container" aria-label="Pagination"></div>
+                
+                <!-- Info Section -->
+                <div class="card mt-4" style="max-width: 800px; margin-left: auto; margin-right: auto;">
+                    <div class="card-header">
+                        <div class="card-icon"><i class="bi bi-info-circle-fill"></i></div>
+                        <div>
+                            <div class="card-title">Auction House Info</div>
+                            <div class="card-subtitle">How it works</div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <p>Browse live auction house listings from DonutSMP. Use the search bar to find specific items and sort by price or listing time. Click on a seller's name to view their profile and statistics.</p>
+                        <ul style="margin-top: 15px; color: var(--text-muted); list-style: disc inside;">
+                            <li>Prices are shown in DonutSMP currency</li>
+                            <li>Time remaining shows when the listing expires</li>
+                            <li>Enchantments are displayed as tags on items</li>
+                            <li>Data is fetched live from the DonutSMP API</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo">
+                        <img src="assets/images/logo.png" alt="Donut Tracker Logo">
+                        <span class="logo-text">Donut <span>Tracker</span></span>
+                    </a>
+                    <p class="mt-2">Track DonutSMP player statistics, explore community leaderboards, and discover fellow players.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-title">Quick Links</h4>
+                    <div class="footer-links">
+                        <a href="stats.html">Player Statistics</a>
+                        <a href="leaderboards.html">Leaderboards</a>
+                        <a href="auction.html">Auction House</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-title">Leaderboards</h4>
+                    <div class="footer-links">
+                        <a href="leaderboards.html?type=money">Money</a>
+                        <a href="leaderboards.html?type=kills">Kills</a>
+                        <a href="leaderboards.html?type=playtime">Playtime</a>
+                        <a href="leaderboards.html?type=shards">Shards</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-title">Support</h4>
+                    <div class="footer-links">
+                        <p style="color: var(--text-secondary); margin-bottom: 8px;">For support, message me on Discord</p>
+                        <a href="https://discord.com/users/its_joeal" target="_blank" rel="noopener"><i class="bi bi-discord"></i> its_joeal</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>© 2025 Donut Tracker • Community stats platform</p>
+                <div class="footer-status">
+                    <span class="status-dot"></span>
+                    <span>Live server status</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="assets/js/app.js?v=47"></script>
+</body>
+</html>

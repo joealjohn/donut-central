@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="View detailed DonutSMP player statistics including kills, deaths, money, playtime, and more.">
+    <meta name="keywords" content="DonutSMP, player stats, Minecraft statistics, player profile">
+    <meta name="theme-color" content="#2E8AFF">
+    
+    <title>Player Stats - Donut Tracker</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/images/logo.png">
+    
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+    
+    <!-- Skinview3D for 3D Skin Rendering -->
+    <script src="https://unpkg.com/skinview3d@3.0.1/bundles/skinview3d.bundle.js"></script>
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="assets/css/style.css?v=39">
+</head>
+<body data-page="stats">
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="assets/images/logo.png" alt="Donut Tracker Logo">
+                <span class="logo-text">Donut <span>Tracker</span></span>
+            </a>
+            
+            <form class="header-search" action="stats.html" method="get">
+                <input type="text" name="user" placeholder="Search player..." aria-label="Search for a player">
+                <button type="submit" aria-label="Search"><i class="bi bi-search"></i></button>
+            </form>
+            
+            <nav class="nav">
+                <a href="index.html" class="nav-link">Home</a>
+                <div class="nav-dropdown">
+                    <button class="nav-link nav-dropdown-toggle active">
+                        Stats <i class="bi bi-chevron-down"></i>
+                    </button>
+                    <div class="nav-dropdown-menu">
+                        <a href="stats.html" class="nav-dropdown-item active">
+                            <i class="bi bi-person-badge"></i>
+                            <div>
+                                <span>Player Stats</span>
+                                <small>Look up individual player statistics</small>
+                            </div>
+                        </a>
+                        <a href="server-stats.html" class="nav-dropdown-item">
+                            <i class="bi bi-server"></i>
+                            <div>
+                                <span>Server Stats</span>
+                                <small>Economy &amp; server statistics</small>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <a href="leaderboards.html" class="nav-link">Leaderboards</a>
+                <a href="prices.html" class="nav-link">Prices</a>
+                <a href="auction.html" class="nav-link">Auction</a>
+                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+                    <i class="bi bi-sun-fill"></i>
+                </button>
+            </nav>
+            
+            <button class="mobile-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <section class="section">
+            <div class="container">
+                <!-- Badge -->
+                <div class="live-badge">
+                    <i class="bi bi-person"></i> Player Statistics
+                </div>
+                
+                <!-- Page Header -->
+                <div class="section-header">
+                    <h1>Player Stats</h1>
+                    <p>Search for any DonutSMP player to view their detailed statistics and leaderboard rankings.</p>
+                </div>
+                
+                <!-- Search Box -->
+                <div class="player-search-wrapper">
+                    <form class="player-search-form" id="player-search-form">
+                        <input type="text" id="player-search" placeholder="Enter player username..." autocomplete="off">
+                        <button type="submit">View Player Profile</button>
+                    </form>
+                </div>
+                
+                <!-- Player Profile Container (shown when player found) -->
+                <div id="player-profile-container" style="display: none;">
+                    <!-- Back button -->
+                    <a href="stats.html" class="back-link" id="back-to-search">
+                        <i class="bi bi-arrow-left"></i> Back to Player Stats
+                    </a>
+                    
+                    <!-- Player Profile Card with 3D Skin -->
+                    <div class="player-profile-card">
+                        <div class="player-skin-section">
+                            <div class="skin-viewer-container">
+                                <canvas id="skin-viewer"></canvas>
+                                <div class="skin-controls">
+                                    <button class="skin-control-btn" id="skin-rotate-toggle" title="Toggle Auto-Rotate">
+                                        <i class="bi bi-arrow-repeat"></i>
+                                    </button>
+                                    <button class="skin-control-btn" id="skin-walk-toggle" title="Toggle Walk Animation">
+                                        <i class="bi bi-person-walking"></i>
+                                    </button>
+                                    <button class="skin-control-btn" id="skin-reset" title="Reset View">
+                                        <i class="bi bi-arrow-counterclockwise"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="player-info-section" id="player-info-section">
+                            <!-- Will be populated by JS -->
+                        </div>
+                    </div>
+                    
+                    <!-- Player Stats Grid -->
+                    <div class="stats-section-header">
+                        <i class="bi bi-bar-chart-fill"></i>
+                        <h2>Player Statistics</h2>
+                    </div>
+                    <div class="player-stats-grid" id="player-stats-grid">
+                        <!-- Will be populated by JS -->
+                    </div>
+                    
+                    <!-- Leaderboard Rankings -->
+                    <div class="player-rankings-section" id="player-rankings">
+                        <div class="stats-section-header">
+                            <i class="bi bi-trophy-fill"></i>
+                            <h2>Leaderboard Rankings</h2>
+                        </div>
+                        <div class="rankings-grid" id="rankings-grid">
+                            <!-- Will be populated by JS -->
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Search Placeholder (shown when no player searched) -->
+                <div id="search-placeholder">
+                    <div class="search-info-card">
+                        <div class="search-info-header">
+                            <i class="bi bi-search"></i>
+                            <h3>Search for Player Stats</h3>
+                        </div>
+                        <p>Enter a DonutSMP player's username to view their complete profile with statistics and leaderboard rankings.</p>
+                        <div class="example-players">
+                            <span>Examples:</span>
+                            <a href="stats.html?user=Hulpic" class="example-player">Hulpic</a>
+                            <a href="stats.html?user=Jeff_Bezos_123" class="example-player">Jeff_Bezos_123</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo">
+                        <img src="assets/images/logo.png" alt="Donut Tracker Logo">
+                        <span class="logo-text">Donut <span>Tracker</span></span>
+                    </a>
+                    <p class="mt-2">Track DonutSMP player statistics, explore community leaderboards, and discover fellow players.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-title">Quick Links</h4>
+                    <div class="footer-links">
+                        <a href="stats.html">Player Statistics</a>
+                        <a href="leaderboards.html">Leaderboards</a>
+                        <a href="auction.html">Auction House</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-title">Leaderboards</h4>
+                    <div class="footer-links">
+                        <a href="leaderboards.html?type=money">Money</a>
+                        <a href="leaderboards.html?type=kills">Kills</a>
+                        <a href="leaderboards.html?type=playtime">Playtime</a>
+                        <a href="leaderboards.html?type=shards">Shards</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-title">Support</h4>
+                    <div class="footer-links">
+                        <p style="color: var(--text-secondary); margin-bottom: 8px;">For support, message me on Discord</p>
+                        <a href="https://discord.com/users/its_joeal" target="_blank" rel="noopener"><i class="bi bi-discord"></i> its_joeal</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>© 2025 Donut Tracker • Community stats platform</p>
+                <div class="footer-status">
+                    <span class="status-dot"></span>
+                    <span>Live server status</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="assets/js/app.js?v=47"></script>
+</body>
+</html>
+

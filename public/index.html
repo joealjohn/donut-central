@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Track DonutSMP player statistics, explore community leaderboards, and discover fellow players with our comprehensive stats platform.">
+    <meta name="keywords" content="DonutSMP, Minecraft, stats, leaderboards, player statistics, auction house">
+    <meta name="theme-color" content="#2E8AFF">
+    
+    <title>Donut Tracker - DonutSMP Statistics Platform</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/images/logo.png">
+    
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="assets/css/style.css?v=39">
+</head>
+<body data-page="home">
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="assets/images/logo.png" alt="Donut Tracker Logo">
+                <span class="logo-text">Donut <span>Tracker</span></span>
+            </a>
+            
+            <form class="header-search" action="stats.html" method="get">
+                <input type="text" name="user" placeholder="Search player..." aria-label="Search for a player">
+                <button type="submit" aria-label="Search"><i class="bi bi-search"></i></button>
+            </form>
+            
+            <nav class="nav">
+                <a href="index.html" class="nav-link active">Home</a>
+                <div class="nav-dropdown">
+                    <button class="nav-link nav-dropdown-toggle">
+                        Stats <i class="bi bi-chevron-down"></i>
+                    </button>
+                    <div class="nav-dropdown-menu">
+                        <a href="stats.html" class="nav-dropdown-item">
+                            <i class="bi bi-person-badge"></i>
+                            <div>
+                                <span>Player Stats</span>
+                                <small>Look up individual player statistics</small>
+                            </div>
+                        </a>
+                        <a href="server-stats.html" class="nav-dropdown-item">
+                            <i class="bi bi-server"></i>
+                            <div>
+                                <span>Server Stats</span>
+                                <small>Economy &amp; server statistics</small>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <a href="leaderboards.html" class="nav-link">Leaderboards</a>
+                <a href="prices.html" class="nav-link">Prices</a>
+                <a href="auction.html" class="nav-link">Auction</a>
+                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+                    <i class="bi bi-sun-fill"></i>
+                </button>
+            </nav>
+            
+            <button class="mobile-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="text-gradient">Donut Tracker</h1>
+                    <p>Track DonutSMP player statistics, explore community leaderboards, and discover fellow players with our comprehensive stats platform.</p>
+                    
+                    <!-- Hero Search -->
+                    <form class="hero-search" action="stats.html" method="get">
+                        <input type="text" name="user" placeholder="Enter player username..." aria-label="Search for a player">
+                        <button type="submit" aria-label="Search"><i class="bi bi-search"></i></button>
+                    </form>
+                    
+                    <!-- Quick Links -->
+                    <div class="flex-center gap-md flex-wrap">
+                        <a href="stats.html" class="btn btn-primary">
+                            <i class="bi bi-bar-chart-fill"></i> Explore Player Stats
+                        </a>
+                        <a href="https://discord.gg/donutsmp" target="_blank" rel="noopener" class="btn btn-secondary">
+                            <i class="bi bi-discord"></i> Discord Community
+                        </a>
+                    </div>
+                    
+                    <!-- Hero Stats -->
+                    <div class="hero-stats">
+                        <div class="hero-stat">
+                            <div class="hero-stat-value" id="server-status"><i class="bi bi-circle-fill text-success" style="font-size: 0.8em;"></i> Online</div>
+                            <div class="hero-stat-label">Server Status</div>
+                        </div>
+                        <div class="hero-stat">
+                            <div class="hero-stat-value" id="players-online"><span class="loading-dots">...</span></div>
+                            <div class="hero-stat-label">Players Online</div>
+                        </div>
+                        <div class="hero-stat">
+                            <div class="hero-stat-value" id="active-auctions"><span class="loading-dots">...</span></div>
+                            <div class="hero-stat-label">Active Auctions</div>
+                        </div>
+                        <div class="hero-stat">
+                            <div class="hero-stat-value" id="server-version">1.21</div>
+                            <div class="hero-stat-label">Minecraft Version</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Community Features Section -->
+        <section class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Community Features</h2>
+                    <p>Discover the tools and features that make our community special. Each feature is crafted with care to enhance your experience.</p>
+                </div>
+                
+                <div class="grid grid-3">
+                    <!-- Feature 1: Auction House -->
+                    <div class="card feature-card">
+                        <div class="card-icon"><i class="bi bi-shop"></i></div>
+                        <h3>Auction House Browser</h3>
+                        <p>Browse and search live auction house listings with advanced filters, pagination, and real-time updates.</p>
+                        <a href="auction.html" class="btn btn-ghost btn-sm mt-2">Browse Auctions</a>
+                    </div>
+                    
+                    <!-- Feature 2: Player Lookup -->
+                    <div class="card feature-card">
+                        <div class="card-icon"><i class="bi bi-person-badge"></i></div>
+                        <h3>Player Lookup Tool</h3>
+                        <p>Search for DonutSMP players by exact username to view their detailed statistics, rankings, and activity history.</p>
+                        <a href="stats.html" class="btn btn-ghost btn-sm mt-2">Find Players</a>
+                    </div>
+                    
+                    <!-- Feature 3: Leaderboards -->
+                    <div class="card feature-card">
+                        <div class="card-icon"><i class="bi bi-trophy-fill"></i></div>
+                        <h3>Player Leaderboards</h3>
+                        <p>Comprehensive ranking system showcasing top players across money, kills, playtime, building, and 10+ categories.</p>
+                        <a href="leaderboards.html" class="btn btn-ghost btn-sm mt-2">View Rankings</a>
+                    </div>
+                    
+                    <!-- Feature 4: Economy Stats -->
+                    <div class="card feature-card">
+                        <div class="card-icon"><i class="bi bi-graph-up-arrow"></i></div>
+                        <h3>Live Economy Statistics</h3>
+                        <p>Real time DonutSMP economy data including player counts, total wealth, and comprehensive server metrics.</p>
+                        <a href="leaderboards.html?type=money" class="btn btn-ghost btn-sm mt-2">View Economy</a>
+                    </div>
+                    
+                    <!-- Feature 5: Transaction Monitor -->
+                    <div class="card feature-card">
+                        <div class="card-icon"><i class="bi bi-arrow-left-right"></i></div>
+                        <h3>Transaction Monitor</h3>
+                        <p>Real time auction house transaction monitoring with advanced search capabilities and market activity tracking.</p>
+                        <a href="auction.html" class="btn btn-ghost btn-sm mt-2">View Transactions</a>
+                    </div>
+                    
+                    <!-- Feature 6: Server Community -->
+                    <div class="card feature-card">
+                        <div class="card-icon"><i class="bi bi-controller"></i></div>
+                        <h3>Active Community</h3>
+                        <p>Join thousands of players on DonutSMP. Connect with the community on Discord and compete on the server.</p>
+                        <a href="https://discord.gg/donutsmp" target="_blank" rel="noopener" class="btn btn-ghost btn-sm mt-2">Join Discord</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Server Statistics Section -->
+        <section class="section" style="background: var(--bg-darker);">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Server Statistics</h2>
+                    <p>Real-time data from DonutSMP server and Discord community.</p>
+                </div>
+                
+                <div class="grid grid-4">
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="bi bi-discord"></i></div>
+                        <div class="stat-value">50K+</div>
+                        <div class="stat-label">Discord Members</div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="bi bi-circle-fill text-success"></i></div>
+                        <div class="stat-value">Online</div>
+                        <div class="stat-label">Server Status</div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="bi bi-clock-history"></i></div>
+                        <div class="stat-value">99.9%</div>
+                        <div class="stat-label">Server Uptime</div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="bi bi-controller"></i></div>
+                        <div class="stat-value">1.21</div>
+                        <div class="stat-label">Minecraft Version</div>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-4">
+                    <h3 class="text-gradient" style="font-family: 'Poppins', sans-serif; font-size: 1.5rem; margin-bottom: 15px;">Connect & Explore</h3>
+                    <p class="text-muted" style="max-width: 500px; margin: 0 auto 25px;">
+                        Join our Discord community to connect with other players and get real-time server updates.
+                    </p>
+                    <div class="flex-center gap-md flex-wrap">
+                        <a href="https://discord.gg/donutsmp" target="_blank" rel="noopener" class="btn btn-primary">
+                            <i class="bi bi-discord"></i> Discord Community
+                        </a>
+                        <a href="stats.html" class="btn btn-secondary">
+                            <i class="bi bi-bar-chart-fill"></i> View Player Stats
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Live Server Data Section -->
+        <section class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Live Server Data</h2>
+                    <p>Real-time statistics from DonutSMP server and Discord community. All data is fetched live from official APIs.</p>
+                </div>
+                
+                <div class="grid grid-2" style="max-width: 900px; margin: 0 auto;">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-icon"><i class="bi bi-circle-fill" style="color: var(--primary-blue);"></i></div>
+                            <div>
+                                <div class="card-title">DonutSMP Statistics</div>
+                                <div class="card-subtitle">Powered by official API</div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <p>A stats tracking platform for DonutSMP players. All data is fetched from official Minecraft server APIs and Discord. View detailed player statistics, leaderboards, and real-time server information.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-icon"><i class="bi bi-bar-chart-fill"></i></div>
+                            <div>
+                                <div class="card-title">Donut Tracker</div>
+                                <div class="card-subtitle">Community Platform</div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <p>Track DonutSMP player statistics, explore community leaderboards, and discover fellow players. Our platform provides comprehensive tools for the DonutSMP community.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo">
+                        <img src="assets/images/logo.png" alt="Donut Tracker Logo">
+                        <span class="logo-text">Donut <span>Tracker</span></span>
+                    </a>
+                    <p class="mt-2">Track DonutSMP player statistics, explore community leaderboards, and discover fellow players.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-title">Quick Links</h4>
+                    <div class="footer-links">
+                        <a href="stats.html">Player Statistics</a>
+                        <a href="leaderboards.html">Leaderboards</a>
+                        <a href="auction.html">Auction House</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-title">Leaderboards</h4>
+                    <div class="footer-links">
+                        <a href="leaderboards.html?type=money">Money</a>
+                        <a href="leaderboards.html?type=kills">Kills</a>
+                        <a href="leaderboards.html?type=playtime">Playtime</a>
+                        <a href="leaderboards.html?type=shards">Shards</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-title">Support</h4>
+                    <div class="footer-links">
+                        <p style="color: var(--text-secondary); margin-bottom: 8px;">For support, message me on Discord</p>
+                        <a href="https://discord.com/users/its_joeal" target="_blank" rel="noopener"><i class="bi bi-discord"></i> its_joeal</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>© 2025 Donut Tracker • Community stats platform</p>
+                <div class="footer-status">
+                    <span class="status-dot"></span>
+                    <span>Live server status</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="assets/js/app.js?v=47"></script>
+</body>
+</html>

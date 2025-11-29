@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="View DonutSMP leaderboards for money, kills, deaths, playtime, and more. See the top players ranked across all categories.">
+    <meta name="keywords" content="DonutSMP, leaderboards, rankings, top players, Minecraft leaderboard">
+    <meta name="theme-color" content="#2E8AFF">
+    
+    <title>Leaderboards - Donut Tracker</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/images/logo.png">
+    
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="assets/css/style.css?v=39">
+</head>
+<body data-page="leaderboards">
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="assets/images/logo.png" alt="Donut Tracker Logo">
+                <span class="logo-text">Donut <span>Tracker</span></span>
+            </a>
+            
+            <form class="header-search" action="stats.html" method="get">
+                <input type="text" name="user" placeholder="Search player..." aria-label="Search for a player">
+                <button type="submit" aria-label="Search"><i class="bi bi-search"></i></button>
+            </form>
+            
+            <nav class="nav">
+                <a href="index.html" class="nav-link">Home</a>
+                <div class="nav-dropdown">
+                    <button class="nav-link nav-dropdown-toggle">
+                        Stats <i class="bi bi-chevron-down"></i>
+                    </button>
+                    <div class="nav-dropdown-menu">
+                        <a href="stats.html" class="nav-dropdown-item">
+                            <i class="bi bi-person-badge"></i>
+                            <div>
+                                <span>Player Stats</span>
+                                <small>Look up individual player statistics</small>
+                            </div>
+                        </a>
+                        <a href="server-stats.html" class="nav-dropdown-item">
+                            <i class="bi bi-server"></i>
+                            <div>
+                                <span>Server Stats</span>
+                                <small>Economy &amp; server statistics</small>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <a href="leaderboards.html" class="nav-link active">Leaderboards</a>
+                <a href="prices.html" class="nav-link">Prices</a>
+                <a href="auction.html" class="nav-link">Auction</a>
+                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+                    <i class="bi bi-sun-fill"></i>
+                </button>
+            </nav>
+            
+            <button class="mobile-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <section class="section">
+            <div class="container">
+                <!-- Community Badge -->
+                <div class="live-badge">
+                    <i class="bi bi-trophy"></i> Community Leaderboards
+                </div>
+                
+                <!-- Page Header -->
+                <div class="section-header">
+                    <h1>Player Rankings</h1>
+                    <p>Discover top-performing DonutSMP players across multiple categories including wealth, PvP skills, building prowess, and server activity.</p>
+                </div>
+                
+                <!-- Current Leaders Section (Featured Cards) -->
+                <div class="current-leaders-wrapper">
+                    <div class="current-leaders-box">
+                        <div class="section-title-centered">
+                            <h2>Current Leaders</h2>
+                            <p>Top players in each category</p>
+                        </div>
+                        <div class="leaders-grid" id="current-leaders">
+                            <div class="inline-loader">
+                                <div class="inline-loader-spinner"></div>
+                                <span>Loading leaders...</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Category Leaderboards Grid -->
+                <div class="leaderboards-grid" id="leaderboards-grid">
+                    <!-- Will be populated by JS -->
+                    <div class="inline-loader">
+                        <div class="inline-loader-spinner"></div>
+                        <span>Loading leaderboards...</span>
+                    </div>
+                </div>
+                
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo">
+                        <img src="assets/images/logo.png" alt="Donut Tracker Logo">
+                        <span class="logo-text">Donut <span>Tracker</span></span>
+                    </a>
+                    <p class="mt-2">Track DonutSMP player statistics, explore community leaderboards, and discover fellow players.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-title">Quick Links</h4>
+                    <div class="footer-links">
+                        <a href="stats.html">Player Statistics</a>
+                        <a href="leaderboards.html">Leaderboards</a>
+                        <a href="auction.html">Auction House</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-title">Leaderboards</h4>
+                    <div class="footer-links">
+                        <a href="leaderboards.html?type=money">Money</a>
+                        <a href="leaderboards.html?type=kills">Kills</a>
+                        <a href="leaderboards.html?type=playtime">Playtime</a>
+                        <a href="leaderboards.html?type=shards">Shards</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-title">Support</h4>
+                    <div class="footer-links">
+                        <p style="color: var(--text-secondary); margin-bottom: 8px;">For support, message me on Discord</p>
+                        <a href="https://discord.com/users/its_joeal" target="_blank" rel="noopener"><i class="bi bi-discord"></i> its_joeal</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>© 2025 Donut Tracker • Community stats platform</p>
+                <div class="footer-status">
+                    <span class="status-dot"></span>
+                    <span>Live server status</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="assets/js/app.js?v=47"></script>
+</body>
+</html>
+
