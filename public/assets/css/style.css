@@ -8067,7 +8067,7 @@ body.light-mode .page-hero-bg {
 }
 
 /* Light mode: Use darker, more vibrant blues */
-.light-mode .home-hero h1 {
+[data-theme="light"] .home-hero h1 {
     background: linear-gradient(135deg, #1e40af 0%, #1d4ed8 50%, #2563eb 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
