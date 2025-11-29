@@ -2607,11 +2607,34 @@ function setActiveNavLink() {
  * Initialize Home page
  */
 async function initHomePage() {
-    // Run both API calls in parallel for faster loading
+    // Run all API calls in parallel for faster loading
     await Promise.all([
         fetchMinecraftServerStatusAnimated(),
-        loadAuctionCountAnimated()
+        fetchDiscordMembersAnimated()
     ]);
+}
+
+/**
+ * Fetch Discord server member count with counting animation
+ */
+async function fetchDiscordMembersAnimated() {
+    const discordEl = document.getElementById('discord-members');
+    if (!discordEl) return;
+    
+    try {
+        // DonutSMP Discord invite code
+        const response = await fetch('https://discord.com/api/v9/invites/donutsmp?with_counts=true');
+        const data = await response.json();
+        
+        if (data.approximate_member_count) {
+            animateNumber(discordEl, data.approximate_member_count);
+        } else {
+            discordEl.textContent = '50K+';
+        }
+    } catch (error) {
+        console.error('Error fetching Discord members:', error);
+        discordEl.textContent = '50K+';
+    }
 }
 
 /**

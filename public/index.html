@@ -21,7 +21,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
     
     <!-- Stylesheet -->
-    <link rel="stylesheet" href="assets/css/style.css?v=50">
+    <link rel="stylesheet" href="assets/css/style.css?v=54">
 </head>
 <body data-page="home">
     <!-- Floating Background Items -->
@@ -94,21 +94,29 @@
 
     <!-- Main Content -->
     <main class="main">
-        <!-- Hero Section -->
-        <section class="hero">
+        <!-- Hero Section with Stats-Hero Styling -->
+        <section class="stats-hero home-hero">
+            <div class="stats-hero-bg"></div>
             <div class="container">
-                <div class="hero-content">
-                    <h1 class="text-gradient">Donut Central</h1>
+                <div class="stats-hero-content">
+                    <h1>Donut Central</h1>
                     <p>Track DonutSMP player statistics, explore community leaderboards, and discover fellow players with our comprehensive stats platform.</p>
                     
-                    <!-- Hero Search -->
-                    <form class="hero-search" action="stats.html" method="get">
-                        <input type="text" name="user" placeholder="Enter player username..." aria-label="Search for a player">
-                        <button type="submit" aria-label="Search"><i class="bi bi-search"></i></button>
-                    </form>
+                    <!-- Enhanced Search Box -->
+                    <div class="stats-search-box">
+                        <form class="stats-search-form" action="stats.html" method="get">
+                            <div class="stats-search-input-wrapper">
+                                <i class="bi bi-search"></i>
+                                <input type="text" name="user" placeholder="Enter player username..." autocomplete="off">
+                            </div>
+                            <button type="submit" class="stats-search-btn">
+                                <i class="bi bi-arrow-right"></i>
+                            </button>
+                        </form>
+                    </div>
                     
                     <!-- Quick Links -->
-                    <div class="flex-center gap-md flex-wrap">
+                    <div class="home-hero-buttons">
                         <a href="stats.html" class="btn btn-primary">
                             <i class="bi bi-bar-chart-fill"></i> Explore Player Stats
                         </a>
@@ -116,24 +124,38 @@
                             <i class="bi bi-discord"></i> Discord Community
                         </a>
                     </div>
-                    
-                    <!-- Hero Stats -->
-                    <div class="hero-stats">
-                        <div class="hero-stat">
-                            <div class="hero-stat-value" id="server-status"><i class="bi bi-circle-fill text-success" style="font-size: 0.8em;"></i> Online</div>
-                            <div class="hero-stat-label">Server Status</div>
+                </div>
+            </div>
+            
+            <!-- Live Stats Cards -->
+            <div class="container">
+                <div class="home-stats-grid">
+                    <div class="home-stat-card">
+                        <div class="home-stat-icon"><i class="bi bi-circle-fill text-success"></i></div>
+                        <div class="home-stat-info">
+                            <div class="home-stat-value" id="server-status">Online</div>
+                            <div class="home-stat-label">Server Status</div>
                         </div>
-                        <div class="hero-stat">
-                            <div class="hero-stat-value" id="players-online"><span class="loading-dots">...</span></div>
-                            <div class="hero-stat-label">Players Online</div>
+                    </div>
+                    <div class="home-stat-card">
+                        <div class="home-stat-icon"><i class="bi bi-people-fill"></i></div>
+                        <div class="home-stat-info">
+                            <div class="home-stat-value" id="players-online"><span class="loading-dots">...</span></div>
+                            <div class="home-stat-label">Players Online</div>
                         </div>
-                        <div class="hero-stat">
-                            <div class="hero-stat-value" id="active-auctions"><span class="loading-dots">...</span></div>
-                            <div class="hero-stat-label">Active Auctions</div>
+                    </div>
+                    <div class="home-stat-card">
+                        <div class="home-stat-icon"><i class="bi bi-discord"></i></div>
+                        <div class="home-stat-info">
+                            <div class="home-stat-value" id="discord-members"><span class="loading-dots">...</span></div>
+                            <div class="home-stat-label">Discord Members</div>
                         </div>
-                        <div class="hero-stat">
-                            <div class="hero-stat-value" id="server-version">1.21</div>
-                            <div class="hero-stat-label">Minecraft Version</div>
+                    </div>
+                    <div class="home-stat-card">
+                        <div class="home-stat-icon"><i class="bi bi-box"></i></div>
+                        <div class="home-stat-info">
+                            <div class="home-stat-value" id="server-version">1.21</div>
+                            <div class="home-stat-label">Minecraft Version</div>
                         </div>
                     </div>
                 </div>
@@ -341,6 +363,6 @@
     </footer>
 
     <!-- JavaScript -->
-    <script src="assets/js/app.js?v=57"></script>
+    <script src="assets/js/app.js?v=59"></script>
 </body>
 </html>

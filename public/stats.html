@@ -24,25 +24,9 @@
     <script src="https://unpkg.com/skinview3d@3.0.1/bundles/skinview3d.bundle.js"></script>
     
     <!-- Stylesheet -->
-    <link rel="stylesheet" href="assets/css/style.css?v=50">
+    <link rel="stylesheet" href="assets/css/style.css?v=54">
 </head>
 <body data-page="stats">
-    <!-- Floating Background Items -->
-    <div class="floating-items-container">
-        <img src="assets/images/golden_apple.png" alt="" class="floating-item glow">
-        <img src="assets/images/netherite_sword.png" alt="" class="floating-item">
-        <img src="assets/images/ender_pearl.png" alt="" class="floating-item glow">
-        <img src="assets/images/end_crystal.png" alt="" class="floating-item glow">
-        <img src="assets/images/netherite_pickaxe.png" alt="" class="floating-item">
-        <img src="assets/images/totem_of_undyig.png" alt="" class="floating-item glow">
-        <img src="assets/images/obsidian.png" alt="" class="floating-item">
-        <img src="assets/images/glowstone.png" alt="" class="floating-item glow">
-        <img src="assets/images/respawn_anchor.png" alt="" class="floating-item">
-        <img src="assets/images/mace.png" alt="" class="floating-item">
-        <img src="assets/images/elytra.png" alt="" class="floating-item">
-        <img src="assets/images/potion.png" alt="" class="floating-item glow">
-    </div>
-
     <!-- Header -->
     <header class="header">
         <div class="container">
@@ -97,36 +81,51 @@
 
     <!-- Main Content -->
     <main class="main">
+        <!-- Stats Hero Section -->
+        <section class="stats-hero">
+            <div class="stats-hero-bg"></div>
+            <div class="container">
+                <div class="stats-hero-content">
+                    <div class="stats-hero-icon">
+                        <i class="bi bi-person-badge-fill"></i>
+                    </div>
+                    <h1>Player Statistics</h1>
+                    <p>Search for any DonutSMP player to view their detailed statistics, leaderboard rankings, and 3D skin preview.</p>
+                    
+                    <!-- Enhanced Search Box -->
+                    <div class="stats-search-box">
+                        <form class="stats-search-form" id="player-search-form">
+                            <div class="stats-search-input-wrapper">
+                                <i class="bi bi-search"></i>
+                                <input type="text" id="player-search" placeholder="Enter player username..." autocomplete="off">
+                            </div>
+                            <button type="submit">
+                                <i class="bi bi-arrow-right"></i>
+                                <span>Search</span>
+                            </button>
+                        </form>
+                        <div class="stats-search-suggestions">
+                            <span>Try:</span>
+                            <a href="stats.html?user=Hulpic">Hulpic</a>
+                            <a href="stats.html?user=Jeff_Bezos_123">Jeff_Bezos_123</a>
+                            <a href="stats.html?user=itsjoeal">itsjoeal</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section class="section">
             <div class="container">
-                <!-- Badge -->
-                <div class="live-badge">
-                    <i class="bi bi-person"></i> Player Statistics
-                </div>
-                
-                <!-- Page Header -->
-                <div class="section-header">
-                    <h1>Player Stats</h1>
-                    <p>Search for any DonutSMP player to view their detailed statistics and leaderboard rankings.</p>
-                </div>
-                
-                <!-- Search Box -->
-                <div class="player-search-wrapper">
-                    <form class="player-search-form" id="player-search-form">
-                        <input type="text" id="player-search" placeholder="Enter player username..." autocomplete="off">
-                        <button type="submit">View Player Profile</button>
-                    </form>
-                </div>
-                
                 <!-- Player Profile Container (shown when player found) -->
                 <div id="player-profile-container" style="display: none;">
                     <!-- Back button -->
                     <a href="stats.html" class="back-link" id="back-to-search">
-                        <i class="bi bi-arrow-left"></i> Back to Player Stats
+                        <i class="bi bi-arrow-left"></i> Back to Search
                     </a>
                     
                     <!-- Player Profile Card with 3D Skin -->
-                    <div class="player-profile-card">
+                    <div class="player-profile-card enhanced">
                         <div class="player-skin-section">
                             <div class="skin-viewer-container">
                                 <canvas id="skin-viewer"></canvas>
@@ -171,16 +170,34 @@
                 
                 <!-- Search Placeholder (shown when no player searched) -->
                 <div id="search-placeholder">
-                    <div class="search-info-card">
-                        <div class="search-info-header">
-                            <i class="bi bi-search"></i>
-                            <h3>Search for Player Stats</h3>
+                    <div class="stats-features-grid">
+                        <div class="stats-feature-card">
+                            <div class="stats-feature-icon">
+                                <i class="bi bi-person-bounding-box"></i>
+                            </div>
+                            <h3>3D Skin Viewer</h3>
+                            <p>Interactive 3D preview of any player's Minecraft skin with walking animation.</p>
                         </div>
-                        <p>Enter a DonutSMP player's username to view their complete profile with statistics and leaderboard rankings.</p>
-                        <div class="example-players">
-                            <span>Examples:</span>
-                            <a href="stats.html?user=Hulpic" class="example-player">Hulpic</a>
-                            <a href="stats.html?user=Jeff_Bezos_123" class="example-player">Jeff_Bezos_123</a>
+                        <div class="stats-feature-card">
+                            <div class="stats-feature-icon">
+                                <i class="bi bi-graph-up-arrow"></i>
+                            </div>
+                            <h3>Complete Stats</h3>
+                            <p>View kills, deaths, K/D ratio, money, playtime, and more detailed statistics.</p>
+                        </div>
+                        <div class="stats-feature-card">
+                            <div class="stats-feature-icon">
+                                <i class="bi bi-trophy"></i>
+                            </div>
+                            <h3>Leaderboard Ranks</h3>
+                            <p>See where the player ranks across all leaderboard categories.</p>
+                        </div>
+                        <div class="stats-feature-card">
+                            <div class="stats-feature-icon">
+                                <i class="bi bi-clock-history"></i>
+                            </div>
+                            <h3>Activity Tracking</h3>
+                            <p>Track first join date, last seen, online status, and current world.</p>
                         </div>
                     </div>
                 </div>
@@ -239,7 +256,7 @@
     </footer>
 
     <!-- JavaScript -->
-    <script src="assets/js/app.js?v=57"></script>
+    <script src="assets/js/app.js?v=59"></script>
 </body>
 </html>
 
