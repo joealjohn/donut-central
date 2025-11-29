@@ -8066,6 +8066,14 @@ body.light-mode .page-hero-bg {
     background-clip: text;
 }
 
+/* Light mode: Use darker, more vibrant blues */
+.light-mode .home-hero h1 {
+    background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 50%, #3b82f6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
 .home-hero-buttons {
     display: flex;
     justify-content: center;
