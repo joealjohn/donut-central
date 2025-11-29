@@ -1,102 +1,104 @@
-# Donut Stats - DonutSMP Statistics Platform
+Donut Stats – DonutSMP Player Statistics Platform
 
-A comprehensive stats tracking platform for DonutSMP players. View detailed player statistics, leaderboards, auction house data, and real-time server information.
+A complete stats-tracking platform for DonutSMP players.
+Browse in-depth player statistics, global leaderboards, auction house listings, and real-time server information — all in one place.
 
-## 🚀 Quick Setup
+🚀 Quick Setup
+1. Add Your API Key
 
-### 1. Configure API Key
+Open api/config.php and insert your DonutSMP API key:
 
-Open `api/config.php` and replace the placeholder with your DonutSMP API key:
-
-```php
 $API_KEY = 'your_api_key_here';
-```
 
-To get an API key, run `/api` in-game on DonutSMP.
 
-### 2. Deploy to Web Server
+Get your API key by running /api in-game on DonutSMP.
 
-Copy the entire project to your web server (Apache with PHP support recommended):
-- For XAMPP: Place in `htdocs/donut-stats/`
-- For Apache: Place in `/var/www/html/donut-stats/`
+2. Deploy to Your Web Server
 
-### 3. Access the Site
+Copy the full project to a PHP-enabled server.
 
-Open your browser and navigate to:
-- Local: `http://localhost/donut-stats/public/`
-- Production: `https://yourdomain.com/public/`
+XAMPP:
 
-## 📁 Project Structure
+htdocs/donut-stats/
 
-```
+
+Apache (Linux):
+
+/var/www/html/donut-stats/
+
+3. Open the Website
+
+Local:
+
+http://localhost/donut-stats/public/
+
+
+Production:
+
+https://yourdomain.com/public/
+
+📁 Project Structure
 donut-stats/
 │
-├─ public/                    # Frontend files (publicly accessible)
-│   ├─ index.html            # Homepage with hero and features
-│   ├─ stats.html            # Player statistics page
-│   ├─ leaderboards.html     # All leaderboard categories
-│   ├─ auction.html          # Auction house browser
-│   ├─ api-docs.html         # API documentation (Swagger-style)
+├─ public/                     # Frontend files
+│   ├─ index.html              # Homepage with hero + features
+│   ├─ stats.html              # Player statistics page
+│   ├─ leaderboards.html       # Leaderboards UI
+│   ├─ auction.html            # Auction house browser
+│   ├─ api-docs.html           # API documentation (Swagger-style)
 │   └─ assets/
-│       ├─ css/style.css     # Main stylesheet (donut theme)
-│       ├─ js/app.js         # Frontend JavaScript
-│       └─ images/           # Images and logo
+│       ├─ css/style.css       # Main donut-themed stylesheet
+│       ├─ js/app.js           # Frontend logic
+│       └─ images/             # Icons, backgrounds, logo
 │
-└─ api/                       # Backend PHP proxy (protects API key)
-    ├─ config.php            # API configuration (put your key here!)
-    ├─ stats.php             # Player stats endpoint
-    ├─ leaderboard.php       # Leaderboards endpoint
-    ├─ auction.php           # Auction house endpoint
-    └─ lookup.php            # Player lookup endpoint
-```
+└─ api/                        # Backend PHP proxies (hides API key)
+    ├─ config.php              # API key configuration
+    ├─ stats.php               # Player statistics endpoint
+    ├─ leaderboard.php         # Leaderboards endpoint
+    ├─ auction.php             # Auction data endpoint
+    └─ lookup.php              # Player lookup endpoint
 
-## 🎨 Customization
-
-### Colors (in style.css)
-
-```css
+🎨 Customization
+Theme Colors (style.css)
 :root {
-    --primary-pink: #FF66C4;      /* Main accent color */
-    --accent-purple: #AA78FF;      /* Secondary accent */
-    --bg-dark: #0f1115;            /* Background color */
-    --card-bg: #1a1d23;            /* Card backgrounds */
+    --primary-pink: #FF66C4;
+    --accent-purple: #AA78FF;
+    --bg-dark: #0f1115;
+    --card-bg: #1a1d23;
 }
-```
 
-### Fonts
+Fonts Used
 
-The site uses:
-- **Poppins** - Body text
-- **Press Start 2P** - Pixel-style headings (Minecraft aesthetic)
+Poppins – clean body text
 
-## 📡 API Endpoints
+Press Start 2P – pixel/retro headings for Minecraft style
 
-All API calls go through PHP proxies to protect your API key:
+📡 API Endpoints
 
-| Endpoint | Description |
-|----------|-------------|
-| `/api/stats.php?user=USERNAME` | Get player statistics |
-| `/api/lookup.php?user=USERNAME` | Look up player location/rank |
-| `/api/leaderboard.php?type=TYPE&page=PAGE` | Get leaderboard data |
-| `/api/auction.php?page=PAGE&search=QUERY&sort=SORT` | Browse auction house |
+All requests pass through PHP to protect the API key.
 
-### Leaderboard Types
+Endpoint	Description
+/api/stats.php?user=USERNAME	Fetch player statistics
+/api/lookup.php?user=USERNAME	View player rank/location
+/api/leaderboard.php?type=TYPE&page=PAGE	Leaderboard results
+/api/auction.php?page=PAGE&search=QUERY&sort=SORT	Auction house listings
+Available Leaderboard Types
+money, kills, deaths, playtime, shards,
+brokenblocks, placedblocks, mobskilled,
+sell, shop
 
-- `money`, `kills`, `deaths`, `playtime`, `shards`
-- `brokenblocks`, `placedblocks`, `mobskilled`, `sell`, `shop`
+Auction Sort Options
+lowest_price, highest_price,
+recently_listed, last_listed
 
-### Auction Sort Options
+⚠️ Rate Limiting
 
-- `lowest_price`, `highest_price`, `recently_listed`, `last_listed`
+The DonutSMP Public API allows 250 requests/minute per API key.
+This platform includes automatic handling for 429 Too Many Requests responses and displays retry messages to users.
 
-## ⚠️ Rate Limits
+📝 License
 
-The DonutSMP API has a limit of **250 requests per minute** per API key. The frontend handles 429 responses gracefully and shows retry messages.
+This is an unofficial fan-made project created for the DonutSMP community.
+Not affiliated with DonutSMP or its owners.
 
-## 📝 License
-
-This is a fan-made project for the DonutSMP community. Not affiliated with DonutSMP officially.
-
----
-
-Made with 🍩 for the DonutSMP community
+Made with 🍩 for the DonutSMP players ❤️
