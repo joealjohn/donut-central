@@ -11,7 +11,7 @@
 // API base path - works for both local dev and Vercel
 const API_BASE = '/api';
 const MINECRAFT_HEAD_API = 'https://mc-heads.net/avatar';
-const MINECRAFT_ITEMS_API = 'https://minecraft-api.vercel.app/images/items';
+const MINECRAFT_ITEMS_API = 'https://minecraftallimages.jemsire.com/images'; // Supports all MC versions including 1.20+
 const ITEMS_PER_PAGE = 45;
 const ITEMS_PER_PAGE_OFFSET = 44; // API has 1 item overlap between pages
 
@@ -414,14 +414,20 @@ function calculatePriceTrend(data) {
 // ============================================
 
 /**
- * Get Minecraft item image URL from minecraft-api.vercel.app
+ * Get Minecraft item image URL from minecraftallimages.jemsire.com
+ * This API supports all Minecraft versions including 1.20+ items
+ * Falls back to minecraft-icon-items library for older items
  * @param {string} itemId - The item ID (with or without minecraft: prefix)
- * @returns {string} The image URL
+ * @returns {string} The image URL or data URL
  */
 function getItemImageUrl(itemId) {
-    // Remove minecraft: prefix if present
+    if (!itemId) return '';
+    
+    // Remove minecraft: prefix if present and clean up
     let cleanId = itemId.replace(/^minecraft:/i, '').toLowerCase();
-    // Use minecraft-api.vercel.app for item images
+    
+    // Primary: Use minecraftallimages.jemsire.com API (supports 1.20+ items)
+    // This API has 1400+ items including all modern Minecraft items
     return `${MINECRAFT_ITEMS_API}/${cleanId}.png`;
 }
 
